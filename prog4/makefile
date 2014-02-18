@@ -1,9 +1,9 @@
 ##Start of the Makefile
-prog3: main.o
-	gcc -std=c99 -o prog4 prog4.o -I.
+prog4: main.o
+	g++ -o prog4 prog4.o -I.
 	
-main.o: prog4.c
-	gcc -std=c99 -Wall -c prog4.c -I.
+main.o: prog4.cpp prog4.h
+	g++ -Wall -c prog4.cpp -I.
 	
 clean:
 	rm *.o
