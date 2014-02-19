@@ -27,7 +27,10 @@ using namespace std;
 void testNodes();
 void printVector(vector<int> vect);
 void testVectors();
+
+//string helper functions
 string toLowerCase(string strWord);
+string trimWhiteSpace(string strWord);
 
 /*
 This assignment requires creating a case-insensitive cross reference generator[1]. The program will take an 
@@ -60,6 +63,8 @@ int main(int argc, char* argv[]){
 		while (iss>>strWord){
 			if(DEBUG){cout<<strWord<<"|";};
 			
+			strWord=trimWhiteSpace(strWord);	//trim off all whitespace and punctuation characters
+			
 			//convert each word to lowercase so everything here-on-out is case-insensitive
 			strWord=toLowerCase(strWord);
 		
@@ -70,14 +75,25 @@ int main(int argc, char* argv[]){
 
 	}
 	
-	cout<<"Done parsing file."<<endl;
+	cout<<"DONE PARSING FILE"<<endl<<endl;
 	
 	//print the final word cross reference
 	tree.print();
 		
 	//testNodes();
 	
-	cout<<"\nDone."<<endl<<endl;
+	cout<<"\nDONE."<<endl<<endl;
+}
+
+//helper function to trim whitespace off strings (also punctuation)
+string trimWhiteSpace(string strWord){
+	string whitespace=" \t\n.,;-'?!/@#$%^&*()_+=|\\`~<>";
+	const size_t beginIndex=strWord.find_first_not_of(whitespace);
+	if (beginIndex==string::npos){	//the whole word was whitespace
+		return "";
+	}
+	const size_t indexRange = 1+strWord.find_last_not_of(whitespace)-beginIndex;
+	return strWord.substr(beginIndex, indexRange);
 }
 
 //helper function to make a string lowercase.

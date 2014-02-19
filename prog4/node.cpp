@@ -41,7 +41,7 @@ void Node::print(){
 	}
 	
 	//print this node
-	cout << "Word: " << word << " Count: " << lineNumbers.size()<<" lineNumbers";
+	cout << "Word: " << word << " Count: " << lineNumbers.size()<<" lines ";
 	size_t count = lineNumbers.size();
 	for(size_t i=0;i<count;i++){
 		cout<< ' ' << lineNumbers[i];
