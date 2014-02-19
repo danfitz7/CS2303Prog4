@@ -1,6 +1,7 @@
 /*
 CS 2302 PROGRAM 4
 Daniel Fitzgerald
+Ethan Coeytaux
 2/17/14
 A Cross Reference Generator in C++
 */
@@ -24,6 +25,8 @@ using namespace std;
 
 //function prototypes
 void testNodes();
+void printVector(vector<int> vect);
+void testVectors();
 string toLowerCase(string strWord);
 
 /*
@@ -41,7 +44,7 @@ int main(int argc, char* argv[]){
 	}
 	
 	//init an empty tree of words and their associated counts and line numbers
-	Node tree();
+	Node tree;
 		
 	//loop through the input file until EOF
 	string strInputLine;		//the current input line
@@ -61,20 +64,23 @@ int main(int argc, char* argv[]){
 			strWord=toLowerCase(strWord);
 		
 			//add the word and the line number to the tree
-			//tree.insert();
+			tree.insert(strWord, lineNumber);
 		}
 		if(DEBUG){cout<<endl;}
 
 	}
 	
+	cout<<"Done parsing file."<<endl;
+	
 	//print the final word cross reference
-	//tree.print();
+	tree.print();
 		
-	testNodes();
+	//testNodes();
 	
 	cout<<"\nDone."<<endl<<endl;
 }
 
+//helper function to make a string lowercase.
 string toLowerCase(string strWord){
 	for (size_t i=0;i<strWord.length();i++){
 		strWord[i]=tolower(strWord[i]);
@@ -82,16 +88,20 @@ string toLowerCase(string strWord){
 	return strWord;
 }
 
+//helper function to test the tree data structure
 void testNodes(){
 	cout<<"Testing Nodes..."<<endl;
 	
-	Node testTree("Hello", 1);
+	Node testTree;
 	cout<<"Node initialized..."<<endl;
 	
-	testTree.insert("world", 1);
+	testTree.insert("Hello", 1);
 	cout<<"Node 1 inserted..."<<endl;
 	
-	testTree.insert("goodbye", 1);
+	testTree.insert("world", 2);
+	cout<<"Node 2 inserted..."<<endl;
+	
+	testTree.insert("apple", 3);
 	cout<<"Node 2 inserted..."<<endl;
 	
 	cout<<"printing tree..."<<endl;

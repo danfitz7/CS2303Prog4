@@ -1,0 +1,44 @@
+Author:				Daniel Fitzgerald, Ethan Coeytaux
+Date:				2/18/2014
+Version:			1.0
+Project ID:			Program 4
+CS Class:			CS 2303
+Programming Language:		C++
+OS/Hardware dependencies:	n/a
+
+Problem Description:		A Cross Reference Generator
+
+Overall Design:				Words are recorded in a sorted binary tree structure as they are read in
+	System structure	
+	Data representation		Words are stored in nodes of a tree, where each node contains a word, a vector containing all the lines it appears on, and left and right child nodes.
+	Algorithms 				Words are inserted in the sorted tree by traversing the tree until the word is found and that node it updated or the location it should be in is found and the node is created
+
+Program Assumptions 
+      and Restrictions:		n/a
+
+Interfaces:					n/a
+	User
+	File/D-B
+	Program/Module
+
+Implementation Details:
+	Data					Binary tree is implemented in a class for a tree node
+	Variables				DEBUG in prog4.h controls verbose debug printing
+	Algorithm				n/a
+
+How to build the program:	make
+
+Program Source:				prog4.cpp prog4.h node.cpp node.h
+
+Additional Files:			none
+
+Results:					TODO
+
+Test Procedures:			./prog4 < US_Constitution.txt
+Test Data:					US_Constitution.txt
+
+Performance Evaluation:		n/a
+	Time/Space
+	User Interface
+
+References:					http://www.cplusplus.com/reference/vector/vector/vector/
