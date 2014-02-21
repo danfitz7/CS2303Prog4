@@ -63,7 +63,8 @@ int main(int argc, char* argv[]){
 		while (iss>>strWord){
 			if(DEBUG){cout<<strWord<<"|";};
 			
-			strWord=trimWhiteSpace(strWord);	//trim off all whitespace and punctuation characters
+			//trim off all whitespace and punctuation characters
+			strWord=trimWhiteSpace(strWord);
 			
 			//convert each word to lowercase so everything here-on-out is case-insensitive
 			strWord=toLowerCase(strWord);
