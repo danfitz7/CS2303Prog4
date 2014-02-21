@@ -22,7 +22,7 @@ public:
 	~Node();							//destructor prototype
 	
 	void insert(string word, int line);
-	int print();
+	void print();
 };
 
 #endif

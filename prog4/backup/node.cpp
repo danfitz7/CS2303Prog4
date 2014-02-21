@@ -4,7 +4,6 @@
 using std::cout;
 #include <vector>
 using std::vector;
-#include <iomanip>
 
 #include "prog4.h"
 
@@ -33,39 +32,26 @@ Node::~Node(){
 }
 
 //print the words in the tree recursively
-int Node::print(){
+void Node::print(){
 	//if(DEBUG){cout<<"Printing Node..."<<endl;}
-	
-	int leftNode = 0, rightNode = 0;
 	
 	//print left side (lower)
 	if (left){
-		leftNode = left->print();
+		left->print();
 	}
 	
 	//print this node
-	cout << "\"" << word << "\""; //prints word
-	for (size_t i=24; i>word.length() + 2;i-=8) //done to properly space columns, adds in appropriate number of tabs depending on the length of the word
-		cout << "\t";
-	cout << "|" << lineNumbers.size() << "\t" << "|" << lineNumbers[0]; //prints count and first line number
+	cout << "Word: " << word << " Count: " << lineNumbers.size()<<" lines ";
 	size_t count = lineNumbers.size();
-	int j = 1;
-	for(size_t i=1;i<count;i++){ //prints out all line number
-		if (lineNumbers[i - 1] != lineNumbers[i]) //prevents repeat of lines
-		{
-			if (j % 10 == 0) cout << endl << "\t\t\t|\t|"; //done to properly space line numbers
-			else cout << ", ";
-			cout << lineNumbers[i];
-			j++;
-		}
+	for(size_t i=0;i<count;i++){
+		cout<< ' ' << lineNumbers[i];
 	}
 	cout<<endl;
 	
 	//print right side (higher)
 	if(right){
-		rightNode = right->print();
+		right->print();
 	}
-	return 1 + leftNode + rightNode;
 }
 
 
@@ -96,7 +82,7 @@ void Node::insert(string insertedWord, int lineNumber){
 //			if(DEBUG){cout<<"This node "<<word<<" has "<<lineNumbers.size()<<" occurrences"<<endl;}
 		
 			//decide which branch to traverse (left, right) based on comparison
-			Node** nextBranchPtrPtr=(comparison>0)? &left: &right;
+			Node** nextBranchPtrPtr=(comparison<0)? &left: &right;
 			
 			if (*nextBranchPtrPtr){	//if the branch exists
 //				if(DEBUG){cout<<"Recursing on one of our branches..."<<endl;}

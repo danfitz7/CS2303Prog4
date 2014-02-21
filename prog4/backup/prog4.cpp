@@ -63,13 +63,14 @@ int main(int argc, char* argv[]){
 		while (iss>>strWord){
 			if(DEBUG){cout<<strWord<<"|";};
 			
-			strWord=trimWhiteSpace(strWord);	//trim off all whitespace and punctuation characters
+			//trim off all whitespace and punctuation characters
+			strWord=trimWhiteSpace(strWord);
 			
 			//convert each word to lowercase so everything here-on-out is case-insensitive
 			strWord=toLowerCase(strWord);
 		
 			//add the word and the line number to the tree
-			if (strWord != "") tree.insert(strWord, lineNumber);
+			tree.insert(strWord, lineNumber);
 		}
 		if(DEBUG){cout<<endl;}
 
@@ -78,10 +79,7 @@ int main(int argc, char* argv[]){
 	cout<<"DONE PARSING FILE"<<endl<<endl;
 	
 	//print the final word cross reference
-	cout << "WORD                    |COUNT  |LINES" << endl;
-	cout << "--------------------------------------" << endl;
-	int totalWords = tree.print();
-	cout << endl << "Total unique words: " << totalWords << endl;
+	tree.print();
 		
 	//testNodes();
 	
@@ -90,7 +88,7 @@ int main(int argc, char* argv[]){
 
 //helper function to trim whitespace off strings (also punctuation)
 string trimWhiteSpace(string strWord){
-	string whitespace=" \t\n.,;:-'?!/@#$%^&*()_+=|\\`~<>\"";
+	string whitespace=" \t\n.,;-'?!/@#$%^&*()_+=|\\`~<>";
 	const size_t beginIndex=strWord.find_first_not_of(whitespace);
 	if (beginIndex==string::npos){	//the whole word was whitespace
 		return "";

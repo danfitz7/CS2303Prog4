@@ -6,15 +6,19 @@ CS Class:			CS 2303
 Programming Language:		C++
 OS/Hardware dependencies:	n/a
 
-Problem Description:		A Cross Reference Generator
+Problem Description:		A Cross Reference Generator. The program will take an 
+							ASCII text file as input. After reading in the file, the program prints out 
+							an alphabetized list of all the words in the file with the word, it's count, and lines it appears on.
 
-Overall Design:				Words are recorded in a sorted binary tree structure as they are read in
+Overall Design:				Words are inserted into a sorted binary tree structure as they are read in
 	System structure	
-	Data representation		Words are stored in nodes of a tree, where each node contains a word, a vector containing all the lines it appears on, and left and right child nodes.
-	Algorithms 				Words are inserted in the sorted tree by traversing the tree until the word is found and that node it updated or the location it should be in is found and the node is created
+	Data representation		Words are stored as nodes of a tree, where each node contains a word, a vector containing all the lines it appears on, and left and right child nodes.
+	Algorithms 				Words are inserted in the sorted tree by traversing the tree until the word is found and that node it updated or the location it should be in is found and the node is created as a leaf there.
 
 Program Assumptions 
-      and Restrictions:		n/a
+      and Restrictions:		White space and punctuation characters are trimmed from the beginning and end of space-separated text to get the words. 
+							This means words separated by only punctuation characters are counted as one word. For example, "pick-me-up" is recognized as one unique word.
+							If a word appears on the same line multiple times, that line number is only printed once, although the multiple occurrences are still reflected in it's count.
 
 Interfaces:					n/a
 	User
@@ -22,9 +26,9 @@ Interfaces:					n/a
 	Program/Module
 
 Implementation Details:
-	Data					Binary tree is implemented in a class for a tree node
+	Data					Binary tree is implemented in a class for a tree node. An empty tree is either an uninitialized word (has no line numbers and word is ""). Terminating leaves are NULL pointers.
 	Variables				DEBUG in prog4.h controls verbose debug printing
-	Algorithm				n/a
+	Algorithm				Words are inserted in the tree by traversing it recursively to search for their location or would-be location.
 
 How to build the program:	make
 
@@ -32,7 +36,7 @@ Program Source:				prog4.cpp prog4.h node.cpp node.h
 
 Additional Files:			none
 
-Results:					TODO
+Results:					prog4_output.txt (using US_Constitution.txt as input)
 
 Test Procedures:			./prog4 < US_Constitution.txt
 Test Data:					US_Constitution.txt
